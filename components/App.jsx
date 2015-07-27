@@ -48,8 +48,25 @@ var App = React.createClass({
   }
 });
 
+var BootStrap = React.createClass({
+  render: function () {
+    return (
+      <html>
+        <head>
+          <meta charSet="utf-8" />
+          <title>Demo</title>
+          <meta name="viewport" content="width=device-width, user-scalable=no" />
+        </head>
+        <body>
+          <App />
+        </body>
+      </html>
+    );
+  }
+});
+
 var routes = (
-  <Route path="/" handler={App}>
+  <Route path="/" handler={BootStrap}>
     <Route name="home" path="/" handler={Home}></Route>
     <Route name="about" path="about" handler={About}></Route>
     <Route name="inbox" path="inbox" handler={Inbox}></Route>
