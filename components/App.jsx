@@ -36,7 +36,13 @@ var App = React.createClass({
     return (
       <div>
         <h1>App</h1>
+        <div>
+          <Link to="home">Home</Link>
+          <Link to="about">About</Link>
+          <Link to="inbox">Inbox</Link>
+        </div>
         <RouteHandler />
+        <script src="build/bundle.js"></script>
       </div>
     );
   }
@@ -44,9 +50,9 @@ var App = React.createClass({
 
 var routes = (
   <Route path="/" handler={App}>
-    <Route path="about" handler={About}>
-      <Route path="inbox" handler={Inbox} />
-    </Route>
+    <Route name="home" path="/" handler={Home}></Route>
+    <Route name="about" path="about" handler={About}></Route>
+    <Route name="inbox" path="inbox" handler={Inbox}></Route>
   </Route>
 );
 

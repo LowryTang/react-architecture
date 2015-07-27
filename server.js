@@ -1,6 +1,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 require('node-jsx').install({extension: '.jsx'});
 
@@ -15,10 +16,12 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(function (req, res, next) {
   var location = new ExpressLocation(req.url, res);
 
-  ReactRouter.run(App, location, function (Root) {
+  ReactRouter.run(App, location, function (Root, state) {
     res.setHeader('Content-Type', 'text/html');
     var AppFactory = React.createFactory(Root);
     var markup = React.renderToString(AppFactory());
